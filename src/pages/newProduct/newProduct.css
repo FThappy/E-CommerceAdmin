@@ -1,0 +1,39 @@
+.newProduct{
+    flex:4;
+    margin-left: 5rem;
+}
+.addProductForm {
+    margin-top: 0.625rem;
+}
+
+.addProductItem {
+    width: 16rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.625rem;
+}
+
+.addProductItem>label {
+    color: gray;
+    font-weight: 600;
+    margin-bottom: 0.625rem;
+}
+
+.addProductItem>input {
+    padding: 0.625rem;
+}
+
+.addProductItem>select {
+    padding: 0.625rem;
+}
+
+.addProductButton {
+    width: 16rem;
+    border: none;
+    cursor: pointer;
+    background-color: #33b249;
+    color: whitesmoke;
+    padding: 0.4rem 0.8rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}

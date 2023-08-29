@@ -1,0 +1,109 @@
+.userList{
+    flex: 4;
+    margin-left: 1.25rem;
+}
+.customHeader {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.userListId{
+    font-size: 1rem;
+}
+.userListUser {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+.userListEmail{
+    font-size: 1.5rem;
+}
+.userListStatus {
+    font-size: 1.5rem;
+}
+.userListTransaction {
+    font-size: 1.5rem;
+}
+
+.userListImg {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+}
+
+.userListEdit {
+    border: none;
+    border-radius: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #3bb077;
+    color: white;
+    cursor: pointer;
+    margin-right: 1.25rem;
+    font-size: 1.2rem;
+
+}
+
+.userListDelete {
+    color: red;
+    cursor: pointer;
+    font-size: 3rem;
+}
+@media screen and (max-width:1800px) {
+    .customHeader {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .userListId {
+            font-size: 1.5rem;
+        }
+    
+        .userListUser {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+    
+        .userListEmail {
+            font-size: 1.2rem;
+        }
+    
+        .userListStatus {
+            font-size: 1.2rem;
+        }
+    
+        .userListTransaction {
+            font-size: 1.2rem;
+        }
+    
+        .userListImg {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+        }
+    
+        .userListEdit {
+            border: none;
+            border-radius: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            background-color: #3bb077;
+            color: white;
+            cursor: pointer;
+            margin-right: 1.25rem;
+            font-size: 1rem;
+    
+        }
+    
+        .userListDelete {
+            color: red;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+}
