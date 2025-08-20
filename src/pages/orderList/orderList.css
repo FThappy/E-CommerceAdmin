@@ -1,45 +1,119 @@
-.productList{
-    flex: 4;
-    margin-left: 1rem;
+.productList {
+  flex: 4;
+  margin-left: 1rem;
 }
 .customHeader {
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .productListId {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 .productListName {
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
 }
 
 .productListStock {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .productListStatus {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .productListPrice {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .productListImg {
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1.5rem;
 }
 
 .productListEdit {
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 1.25rem;
+  font-size: 1.2rem;
+}
+
+.productListDelete {
+  color: red;
+  cursor: pointer;
+  font-size: 3rem;
+}
+.orderButton {
+  border: none;
+  border-radius: 0.8rem;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.orderButton.Approved {
+  background-color: #e5faf2;
+  color: #3bb077;
+}
+.orderButton.Declined {
+  background-color: #fff0f1;
+  color: #d95087;
+}
+.orderButton.Pending {
+  background-color: #ebf1fe;
+  color: #2a7ade;
+}
+
+@media screen and (max-width: 1800px) {
+  .customHeader {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .productListId {
+    font-size: 1.5rem;
+  }
+
+  .procductListName {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+
+  .productListStock {
+    font-size: 1.2rem;
+  }
+
+  .productListStatus {
+    font-size: 1.2rem;
+  }
+
+  .productListPrice {
+    font-size: 1.2rem;
+  }
+
+  .productListImg {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+  }
+
+  .productListEdit {
     border: none;
     border-radius: 0.8rem;
     padding: 0.4rem 0.8rem;
@@ -47,88 +121,12 @@
     color: white;
     cursor: pointer;
     margin-right: 1.25rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
 
-}
-
-.productListDelete {
+  .productListDelete {
     color: red;
     cursor: pointer;
-    font-size: 3rem;
-}
-.orderButton{
-    border: none;
-    border-radius: 0.8rem;
-    padding: 0.5rem 0.8rem;
-    cursor: pointer;
-    font-size: 1rem;
-}
-.orderButton.Approved{
-    background-color: #e5faf2;
-    color: #3bb077;
-}
-.orderButton.Declined {
-    background-color: #fff0f1;
-    color: #d95087;
-}
-.orderButton.Pending {
-    background-color: #ebf1fe;
-    color: #2a7ade;
-}
-
-@media screen and (max-width:1800px) {
-    .customHeader {
-        font-size: 1.2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .productListId {
-        font-size: 1.5rem;
-    }
-
-    .procductListName {
-        display: flex;
-        align-items: center;
-        font-size: 1.2rem;
-    }
-
-    .productListStock {
-        font-size: 1.2rem;
-    }
-
-    .productListStatus {
-        font-size: 1.2rem;
-    }
-
-    .productListPrice {
-        font-size: 1.2rem;
-    }
-
-    .productListImg {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 1.5rem;
-    }
-
-    .productListEdit {
-        border: none;
-        border-radius: 0.8rem;
-        padding: 0.4rem 0.8rem;
-        background-color: #3bb077;
-        color: white;
-        cursor: pointer;
-        margin-right: 1.25rem;
-        font-size: 1rem;
-
-    }
-
-    .productListDelete {
-        color: red;
-        cursor: pointer;
-        font-size: 1.5rem;
-    }
+    font-size: 1.5rem;
+  }
 }

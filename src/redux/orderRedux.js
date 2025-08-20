@@ -1,15 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const orderSlice = createSlice({
-  name: "orders",
+  name: 'orders',
   initialState: {
     orders: [],
     isFetching: false,
-    error: false,
+    error: false
   },
   reducers: {
     //GET ALL
-    getOrderListStart: (state) => {
+    getOrderListStart: state => {
       state.isFetching = true;
       state.error = false;
     },
@@ -22,37 +22,32 @@ export const orderSlice = createSlice({
       state.error = true;
     },
     //DELETE
-    deleteOrderStart: (state) => {
+    deleteOrderStart: state => {
       state.isFetching = true;
       state.error = false;
     },
     deleteOrderSuccess: (state, action) => {
       state.isFetching = false;
-      state.orders = state.orders.filter(
-        (item) => item._id !== action.payload
-      );
-
+      state.orders = state.orders.filter(item => item._id !== action.payload);
     },
     deleteOrderFailure: (state, action) => {
       state.isFetching = false;
       state.error = true;
     },
     //Update
-    updateOrderStatusStart: (state) => {
+    updateOrderStatusStart: state => {
       state.isFetching = true;
       state.error = false;
     },
     updateOrderStatusSuccess: (state, action) => {
       state.isFetching = false;
-      state.orders[
-        state.orders.findIndex((item) => item._id === action.payload.id)
-      ].status = action.payload.order.status;
+      state.orders[state.orders.findIndex(item => item._id === action.payload.id)].status = action.payload.order.status;
     },
     updateOrderStatusFailure: (state, action) => {
       state.isFetching = false;
       state.error = true;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -64,8 +59,7 @@ export const {
   deleteOrderFailure,
   updateOrderStatusStart,
   updateOrderStatusSuccess,
-  updateOrderStatusFailure,
-
+  updateOrderStatusFailure
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

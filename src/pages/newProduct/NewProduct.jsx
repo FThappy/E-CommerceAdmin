@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import "./newProduct.css";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import app from "../../firebase";
-import { addProduct } from "../../redux/apiCalls";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import './newProduct.css';
+import { getStorage, ref, uploadBytes, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import app from '../../firebase';
+import { addProduct } from '../../redux/apiCalls';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
@@ -20,25 +14,24 @@ export default function NewProduct() {
   const [color, setColor] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isFetching, error } = useSelector((state) => state.product);
+  const { isFetching, error } = useSelector(state => state.product);
 
-
-  const handleChange = (e) => {
-    setInputs((prev) => {
+  const handleChange = e => {
+    setInputs(prev => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
   console.log(inputs);
-  const handleCat = (e) => {
-    setCat(e.target.value.split(","));
+  const handleCat = e => {
+    setCat(e.target.value.split(','));
   };
-  const handleSize = (e) => {
-    setSize(e.target.value.split(","));
+  const handleSize = e => {
+    setSize(e.target.value.split(','));
   };
-  const handleColor = (e) => {
-    setColor(e.target.value.split(","));
+  const handleColor = e => {
+    setColor(e.target.value.split(','));
   };
-  const handleClick = (e) => {
+  const handleClick = e => {
     e.preventDefault();
     const filename = new Date().getTime() + file.name;
     const storage = getStorage(app);
@@ -50,42 +43,41 @@ export default function NewProduct() {
     // 2. Error observer, called on failure
     // 3. Completion observer, called on successful completion
     uploadTask.on(
-      "state_changed",
-      (snapshot) => {
+      'state_changed',
+      snapshot => {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
         switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
+          case 'paused':
+            console.log('Upload is paused');
             break;
-          case "running":
-            console.log("Upload is running");
+          case 'running':
+            console.log('Upload is running');
             break;
           default:
         }
       },
-      (error) => {
+      error => {
         // Handle unsuccessful uploads
       },
       () => {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
           // console.log("File available at", downloadURL);
           const product = {
             ...inputs,
             img: downloadURL,
             categories: cat,
             size: size,
-            color: color,
+            color: color
           };
           addProduct(product, dispatch);
           // console.log({ ...inputs, img: downloadURL, categories: cat, size : size , color : color });
           {
-            !error && navigate("/products")
+            !error && navigate('/products');
           }
         });
       }
@@ -93,100 +85,56 @@ export default function NewProduct() {
   };
 
   return (
-    <div className="newProduct">
-      <h1 className="addProductTitle">New Product</h1>
-      <form className="addProductForm">
-        <div className="addProductItem">
+    <div className='newProduct'>
+      <h1 className='addProductTitle'>New Product</h1>
+      <form className='addProductForm'>
+        <div className='addProductItem'>
           <label>Image</label>
-          <input
-            type="file"
-            id="file"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+          <input type='file' id='file' onChange={e => setFile(e.target.files[0])} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Title</label>
-          <input
-            name="title"
-            type="text"
-            placeholder="title..........."
-            onChange={handleChange}
-          />
+          <input name='title' type='text' placeholder='title...........' onChange={handleChange} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Description</label>
-          <input
-            name="desc"
-            type="text"
-            placeholder="description......."
-            onChange={handleChange}
-          />
+          <input name='desc' type='text' placeholder='description.......' onChange={handleChange} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Categories</label>
-          <input
-            name="categories"
-            type="text"
-            placeholder="UT......."
-            onChange={handleCat}
-          />
+          <input name='categories' type='text' placeholder='UT.......' onChange={handleCat} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Size</label>
-          <input
-            name="size"
-            type="text"
-            placeholder="S......."
-            onChange={handleSize}
-          />
+          <input name='size' type='text' placeholder='S.......' onChange={handleSize} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Color</label>
-          <input
-            name="color"
-            type="text"
-            placeholder="blue......."
-            onChange={handleColor}
-          />
+          <input name='color' type='text' placeholder='blue.......' onChange={handleColor} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Price</label>
-          <input
-            name="price"
-            type="number"
-            placeholder="866........"
-            onChange={handleChange}
-          />
+          <input name='price' type='number' placeholder='866........' onChange={handleChange} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Status</label>
-          <input
-            name="status"
-            type="text"
-            placeholder="Active......."
-            onChange={handleChange}
-          />
+          <input name='status' type='text' placeholder='Active.......' onChange={handleChange} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Quantity</label>
-          <input
-            name="quantity"
-            type="number"
-            placeholder="50......."
-            onChange={handleChange}
-          />
+          <input name='quantity' type='number' placeholder='50.......' onChange={handleChange} />
         </div>
-        <div className="addProductItem">
+        <div className='addProductItem'>
           <label>Stock</label>
-          <select name="inStock" onChange={handleChange}>
-            <option value="1" selected>
+          <select name='inStock' onChange={handleChange}>
+            <option value='1' selected>
               Options
             </option>
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+            <option value='true'>Yes</option>
+            <option value='false'>No</option>
           </select>
         </div>
-        <button onClick={handleClick} className="addProductButton">
+        <button onClick={handleClick} className='addProductButton'>
           Create
         </button>
       </form>

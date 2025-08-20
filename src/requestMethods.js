@@ -1,20 +1,19 @@
-import axios from "axios";
+import axios from 'axios';
 
-
-const BASE_URL = "http://localhost:5000/api/"
-
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser)?.accessToken
-
-// const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0Yzc4OWJiYzczMjZkMDBjOTU0YjE3NiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5Mjk3ODI4OCwiZXhwIjoxNjkzMjM3NDg4fQ.Naxwjo9FR4m_wyd6nG60p67XOPLLMv5azQAR0-yqqpE"
-
-
-// console.log(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).currentUser).accessToken);
+const BASE_URL = 'http://localhost:5000/api/';
 
 export const publicRequest = axios.create({
-    baseURL:BASE_URL,
-})
+  baseURL: BASE_URL
+});
 
 export const userRequest = axios.create({
-    baseURL: BASE_URL,
-    headers : {token :`Bearer ${TOKEN}`},
-})
+  baseURL: BASE_URL
+});
+userRequest.interceptors.request.use(request => requestHandler(request));
+const requestHandler = async request => {
+  const token = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).currentUser)?.accessToken;
+  if (token) {
+    request.headers.token = `Bearer ${token}`;
+  }
+  return request;
+};

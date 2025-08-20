@@ -1,5 +1,15 @@
-import { publicRequest,userRequest } from "../requestMethods";
-import { getOrderListSuccess, getOrderListFailure, getOrderListStart, deleteOrderStart, deleteOrderSuccess, deleteOrderFailure, updateOrderStatusStart, updateOrderStatusSuccess, updateOrderStatusFailure } from "./orderRedux";
+import { publicRequest, userRequest } from '../requestMethods';
+import {
+  getOrderListSuccess,
+  getOrderListFailure,
+  getOrderListStart,
+  deleteOrderStart,
+  deleteOrderSuccess,
+  deleteOrderFailure,
+  updateOrderStatusStart,
+  updateOrderStatusSuccess,
+  updateOrderStatusFailure
+} from './orderRedux';
 import {
   getProductFailure,
   getProductStart,
@@ -12,51 +22,61 @@ import {
   updateProductFailure,
   addProductStart,
   addProductSuccess,
-  addProductFailure,
-} from "./productRedux";
-import { deleteUserListFailure, deleteUserListStart, deleteUserListSuccess, getUserListFailure, getUserListStart, getUserListSuccess, updateUserListFailure, updateUserListStart, updateUserListSuccess } from "./userListRedux";
-import { loginStart, loginFailure, loginSuccess } from "./userRedux";
+  addProductFailure
+} from './productRedux';
+import {
+  deleteUserListFailure,
+  deleteUserListStart,
+  deleteUserListSuccess,
+  getUserListFailure,
+  getUserListStart,
+  getUserListSuccess,
+  updateUserListFailure,
+  updateUserListStart,
+  updateUserListSuccess
+} from './userListRedux';
+import { loginStart, loginFailure, loginSuccess } from './userRedux';
 
 export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
-    const res = await publicRequest.post("/auth/login", user);
+    const res = await publicRequest.post('/auth/login', user);
     dispatch(loginSuccess(res.data));
   } catch (err) {
     if (err.response && err.response.status === 401) {
       // Xử lý lỗi 401 ở đây
-      dispatch(loginFailure("Wrong credentials!"));
+      dispatch(loginFailure('Wrong credentials!'));
     } else {
       // Xử lý các lỗi khác ở đây
       console.log(err);
-      dispatch(loginFailure("An error occurred."));
+      dispatch(loginFailure('An error occurred.'));
     }
   }
 };
-export const getProducts = async (dispatch) => {
+export const getProducts = async dispatch => {
   dispatch(getProductStart());
   try {
-    const res = await publicRequest.get("/product/findall");
+    const res = await publicRequest.get('/product/findall');
     dispatch(getProductSuccess(res.data));
   } catch (err) {
     dispatch(getProductFailure());
   }
 };
 
-export const deleteProduct = async (id,dispatch) => {
+export const deleteProduct = async (id, dispatch) => {
   dispatch(deleteProductStart());
   try {
-    const res = await userRequest.delete(`/product/${id}`);
+    await userRequest.delete(`/product/${id}`);
     dispatch(deleteProductSuccess(id));
   } catch (err) {
     dispatch(deleteProductFailure());
   }
 };
-export const updateProduct = async (id , product, dispatch) => {
+export const updateProduct = async (id, product, dispatch) => {
   dispatch(updateProductStart());
   try {
-    const res = await userRequest.put(`/product/${id}`,product);
-    dispatch(updateProductSuccess({id,product}));
+    await userRequest.put(`/product/${id}`, product);
+    dispatch(updateProductSuccess({ id, product }));
   } catch (err) {
     dispatch(updateProductFailure());
   }
@@ -64,45 +84,45 @@ export const updateProduct = async (id , product, dispatch) => {
 export const addProduct = async (product, dispatch) => {
   dispatch(addProductStart());
   try {
-    const res = await userRequest.post(`/product`,product);
+    const res = await userRequest.post(`/product`, product);
     dispatch(addProductSuccess(res.data));
   } catch (err) {
     dispatch(addProductFailure());
   }
 };
 
-export const getUserList = async(dispatch)=>{
-  dispatch(getUserListStart())
-  try{
-    const res = await userRequest.get("/users/findall")
-    dispatch(getUserListSuccess(res.data))
-  }catch(err){
-    dispatch(getUserListFailure())
+export const getUserList = async dispatch => {
+  dispatch(getUserListStart());
+  try {
+    const res = await userRequest.get('/users/findall');
+    dispatch(getUserListSuccess(res.data));
+  } catch (err) {
+    dispatch(getUserListFailure());
   }
-}
-export const deleteUserList = async(id,dispatch)=>{
-  dispatch(deleteUserListStart())
-  try{
-    const rest = await userRequest.delete(`/users/${id}`)
-    dispatch(deleteUserListSuccess(id))
-  }catch(err){
-    dispatch(deleteUserListFailure())
+};
+export const deleteUserList = async (id, dispatch) => {
+  dispatch(deleteUserListStart());
+  try {
+    await userRequest.delete(`/users/${id}`);
+    dispatch(deleteUserListSuccess(id));
+  } catch (err) {
+    dispatch(deleteUserListFailure());
   }
-}
+};
 export const updateUserList = async (id, user, dispatch) => {
   dispatch(updateUserListStart());
   try {
-    const res = await userRequest.put(`/users/${id}`, user);
+    await userRequest.put(`/users/${id}`, user);
     dispatch(updateUserListSuccess({ id, user }));
   } catch (err) {
     dispatch(updateUserListFailure());
   }
 };
 
-export const getOrderList = async (dispatch) => {
+export const getOrderList = async dispatch => {
   dispatch(getOrderListStart());
   try {
-    const res = await userRequest.get("/order/findall");
+    const res = await userRequest.get('/order/findall');
     dispatch(getOrderListSuccess(res.data));
   } catch (err) {
     dispatch(getOrderListFailure());
@@ -111,7 +131,7 @@ export const getOrderList = async (dispatch) => {
 export const deleteOrder = async (id, dispatch) => {
   dispatch(deleteOrderStart());
   try {
-    const res = await userRequest.delete(`/order/${id}`);
+    await userRequest.delete(`/order/${id}`);
     dispatch(deleteOrderSuccess(id));
   } catch (err) {
     dispatch(deleteOrderFailure());
@@ -120,7 +140,7 @@ export const deleteOrder = async (id, dispatch) => {
 export const updateOrderStatus = async (id, order, dispatch) => {
   dispatch(updateOrderStatusStart());
   try {
-    const res = await userRequest.put(`/order/status/${id}`, order);
+    await userRequest.put(`/order/status/${id}`, order);
     dispatch(updateOrderStatusSuccess({ id, order }));
   } catch (err) {
     dispatch(updateOrderStatusFailure());

@@ -79,7 +79,7 @@
 .summaryButtonApproved {
   width: 100%;
   padding: 0.5rem;
-  background-color:  #33b249;
+  background-color: #33b249;
   border: none;
   color: dark;
   font-size: 1.5rem;
@@ -87,10 +87,10 @@
   cursor: pointer;
   margin-bottom: 1.5rem;
 }
-.summaryButtonDeclined{
+.summaryButtonDeclined {
   width: 100%;
   padding: 0.5rem;
-  background-color:  #d95087;
+  background-color: #d95087;
   border: none;
   color: white;
   font-size: 1.5rem;

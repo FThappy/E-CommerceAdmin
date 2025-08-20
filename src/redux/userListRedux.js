@@ -1,15 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const userListSlice = createSlice({
-  name: "userList",
+  name: 'userList',
   initialState: {
     userlist: [],
     isFetching: false,
-    error: false,
+    error: false
   },
   reducers: {
-    //GET ALL
-    getUserListStart: (state) => {
+    getUserListStart: state => {
       state.isFetching = true;
       state.error = false;
     },
@@ -21,15 +20,14 @@ export const userListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //DELETE
-    deleteUserListStart: (state) => {
+    deleteUserListStart: state => {
       state.isFetching = true;
       state.error = false;
     },
     deleteUserListSuccess: (state, action) => {
       state.isFetching = false;
       state.users.splice(
-        state.users.findIndex((item) => item._id === action.payload.id),
+        state.users.findIndex(item => item._id === action.payload.id),
         1
       );
     },
@@ -37,23 +35,19 @@ export const userListSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-    //Update
-    updateUserListStart: (state) => {
+    updateUserListStart: state => {
       state.isFetching = true;
       state.error = false;
     },
     updateUserListSuccess: (state, action) => {
       state.isFetching = false;
-      state.users[
-        state.users.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.user;
+      state.users[state.users.findIndex(item => item._id === action.payload.id)] = action.payload.user;
     },
     updateUserListFailure: (state, action) => {
       state.isFetching = false;
       state.error = true;
     },
-    //Create
-    addUserListStart: (state) => {
+    addUserListStart: state => {
       state.isFetching = true;
       state.error = false;
     },
@@ -64,8 +58,8 @@ export const userListSlice = createSlice({
     addUserListFailure: (state, action) => {
       state.isFetching = false;
       state.error = true;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -77,10 +71,7 @@ export const {
   deleteUserListFailure,
   updateUserListStart,
   updateUserListSuccess,
-  updateUserListFailure,
-  addUserListStart,
-  addUserListSuccess,
-  addUserListFailure,
+  updateUserListFailure
 } = userListSlice.actions;
 
 export default userListSlice.reducer;

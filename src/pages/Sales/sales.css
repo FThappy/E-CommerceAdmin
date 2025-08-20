@@ -1,8 +1,8 @@
-.sales{
-    flex : 5;
-    margin-left: 1rem;
+.sales {
+  flex: 5;
+  margin-left: 1rem;
 }
-.salesWidgets{
-    display: flex;
-    margin: 1.25rem;
+.salesWidgets {
+  display: flex;
+  margin: 1.25rem;
 }
