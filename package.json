@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "CMS",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,7 +35,7 @@
     "prepare": "husky"
   },
   "engines": {
-    "node": "18.20.4"
+    "node": "20.17.0"
   },
   "eslintConfig": {
     "extends": [
